@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OBHRM Weekly Literature Report</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #172033;
+  --muted: #647084;
+  --line: #d9e0ea;
+  --soft: #f7f9fc;
+  --panel: #ffffff;
+  --accent: #1f5fbf;
+  --accent-strong: #123b77;
+  --accent-soft: #eaf2ff;
+  --warn: #b42318;
+  --warn-soft: #fff1f0;
+  --ok: #067647;
+  --ok-soft: #ecfdf3;
+  --shadow: 0 18px 44px rgba(24, 33, 47, 0.10);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    "Microsoft YaHei", Arial, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, #f4f7fb 0%, #eef3f8 260px, #f7f9fc 100%);
+  line-height: 1.55;
+}
+main {
+  width: min(1120px, calc(100% - 40px));
+  margin: 34px auto 56px;
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #f7fbff 100%);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 30px 34px;
+  box-shadow: var(--shadow);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--accent), #6a9af6);
+}
+h1 {
+  margin: 0 0 18px;
+  color: var(--accent-strong);
+  font-size: 34px;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+.meta-item {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.meta-label {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.section {
+  margin-top: 30px;
+}
+h2 {
+  margin: 0 0 16px;
+  color: var(--accent-strong);
+  font-size: 23px;
+  line-height: 1.25;
+}
+h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 19px;
+  line-height: 1.35;
+}
+.article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0;
+  margin: 18px 0;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(24, 33, 47, 0.06);
+}
+.article-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: start;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcfe;
+}
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.article-content {
+  padding: 18px 24px 22px;
+}
+.note {
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-radius: 6px;
+  color: #243b63;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 14px rgba(24, 33, 47, 0.04);
+}
+.stat-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.stat-value {
+  display: block;
+  margin-top: 4px;
+  color: var(--accent-strong);
+  font-size: 26px;
+  font-weight: 800;
+}
+.summary-table {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(24, 33, 47, 0.04);
+}
+.summary-table th,
+.summary-table td {
+  padding: 12px 14px;
+}
+.summary-table th {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.empty-note {
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.keyword-nav {
+  margin-top: 30px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 22px rgba(24, 33, 47, 0.06);
+}
+.keyword-nav h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.keyword-nav-intro {
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.keyword-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.keyword-nav-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  padding: 12px 14px;
+}
+.keyword-nav-title {
+  color: var(--accent-strong);
+  display: block;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+.keyword-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.keyword-nav-links a {
+  border: 1px solid #b7cdfb;
+  border-radius: 999px;
+  background: #f7faff;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 9px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  vertical-align: top;
+}
+th {
+  background: #f1f4f9;
+  color: #344054;
+  text-align: left;
+}
+tr:last-child td { border-bottom: 0; }
+.field-name {
+  width: 170px;
+  color: var(--muted);
+  font-weight: 700;
+  white-space: nowrap;
+  padding-right: 18px;
+}
+.field-value {
+  color: #263244;
+}
+.abstract-block {
+  margin: 12px 0;
+  padding: 14px 16px;
+  background: #fbfdff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.abstract-label {
+  color: var(--muted);
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+}
+.abstract-text {
+  margin: 0;
+  color: #263244;
+  hyphens: auto;
+  text-align: justify;
+  text-wrap: pretty;
+}
+.affiliation-table {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.affiliation-table th,
+.affiliation-table td {
+  padding: 10px 12px;
+}
+.affiliation-table th {
+  background: #f5f8fc;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.affiliation-author {
+  width: 24%;
+  color: #263244;
+  font-weight: 800;
+}
+.affiliation-value {
+  color: #263244;
+  text-align: left;
+}
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.badge.available { color: var(--ok); background: var(--ok-soft); }
+.badge.missing { color: var(--warn); background: var(--warn-soft); }
+.badge.journal {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+.badge.date {
+  color: #475467;
+  background: #f2f4f7;
+}
+.doi-link {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #b7cdfb;
+  border-radius: 999px;
+  background: #f7faff;
+  padding: 5px 10px;
+  font-weight: 700;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+a:hover { text-decoration: underline; }
+.trend-section {
+  margin-top: 30px;
+}
+.trend-intro {
+  color: var(--muted);
+  margin: -8px 0 18px;
+}
+.combined-trend {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 22px rgba(24, 33, 47, 0.06);
+}
+.combined-trend-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+.chart-mode-toggle {
+  display: inline-flex;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  background: #f8fafc;
+}
+.chart-mode-button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 10px;
+}
+.chart-mode-button.active {
+  background: var(--panel);
+  color: var(--accent-strong);
+  box-shadow: 0 2px 7px rgba(24, 33, 47, 0.10);
+}
+.combined-svg[hidden] {
+  display: none;
+}
+.trend-hover-zone {
+  fill: transparent;
+  pointer-events: all;
+}
+.trend-hover-line {
+  display: none;
+  stroke: #94a3b8;
+  stroke-dasharray: 4 4;
+  stroke-width: 1.4;
+}
+.trend-tooltip {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  max-width: min(460px, calc(100% - 40px));
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--ink);
+  box-shadow: 0 16px 42px rgba(24, 33, 47, 0.16);
+  font-size: 13px;
+}
+.trend-tooltip-title {
+  color: var(--accent-strong);
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+.trend-tooltip-row {
+  border-top: 1px solid #edf1f6;
+  padding-top: 7px;
+  margin-top: 7px;
+}
+.trend-tooltip-keyword {
+  font-weight: 900;
+}
+.trend-tooltip-meta {
+  color: var(--muted);
+}
+.trend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+.trend-card {
+  display: block;
+  min-height: 236px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  color: inherit;
+  box-shadow: 0 8px 22px rgba(24, 33, 47, 0.06);
+}
+.trend-card:hover {
+  border-color: #b7cdfb;
+  box-shadow: 0 14px 30px rgba(24, 33, 47, 0.10);
+  text-decoration: none;
+}
+.trend-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 54px;
+}
+.trend-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.22;
+  color: var(--trend-color, var(--accent));
+}
+.trend-count {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 3px;
+}
+.trend-open {
+  color: var(--trend-color, var(--accent));
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 800;
+}
+.trend-svg {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+.trend-axis {
+  fill: #9aa5b5;
+  font-size: 11px;
+}
+.trend-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+.trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 10px;
+}
+.trend-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.trend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--trend-color, var(--accent));
+}
+.trend-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(15, 23, 42, 0.48);
+}
+.trend-modal:target {
+  display: flex;
+}
+.trend-modal-card {
+  width: min(1040px, 100%);
+  max-height: min(760px, calc(100vh - 56px));
+  overflow: auto;
+  background: var(--panel);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 22px 24px;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.25);
+}
+.trend-modal-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+.trend-close {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 10px;
+  color: var(--muted);
+  font-weight: 800;
+}
+@media (max-width: 720px) {
+  main { width: min(100% - 20px, 1120px); margin-top: 16px; }
+  .hero { padding: 22px 20px; }
+  h1 { font-size: 26px; }
+  .article-header {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+  .article-meta {
+    justify-content: flex-start;
+  }
+  .article-content { padding: 16px 18px 18px; }
+  tr, td { display: block; width: 100%; }
+  td { border-bottom: 0; padding: 4px 0; }
+  tr {
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+  }
+  .field-name { white-space: normal; }
+  .affiliation-table,
+  .affiliation-table thead,
+  .affiliation-table tbody,
+  .affiliation-table tr,
+  .affiliation-table th,
+  .affiliation-table td {
+    display: block;
+    width: 100%;
+  }
+  .affiliation-table th { display: none; }
+  .affiliation-author {
+    padding-bottom: 0;
+  }
+  .affiliation-value {
+    padding-top: 2px;
+  }
+  .trend-modal { padding: 12px; }
+  .trend-modal-card { padding: 18px; }
+  .combined-trend-header {
+    display: block;
+  }
+  .chart-mode-toggle {
+    margin-top: 10px;
+  }
+}
+</style>
+</head>
+<body>
+  <main>
+<section class="hero">
+<h1>OBHRM Weekly Literature Report</h1>
+<div class="meta-grid"><div class="meta-item"><span class="meta-label">Window</span><strong>1980-01-01T00:00:00+09:00 to 2026-08-11T00:00:00+09:00</strong></div>
+<div class="meta-item"><span class="meta-label">Concepts</span><strong>Toyokeizai</strong></div>
+<div class="meta-item"><span class="meta-label">Match mode</span><strong>any</strong></div>
+<div class="meta-item"><span class="meta-label">Selected journal lists</span><strong>abs-4-and-4-star; ft50; utd24</strong></div>
+<div class="meta-item"><span class="meta-label">Target journal/platform whitelist size</span><strong>60</strong></div>
+<div class="meta-item"><span class="meta-label">Workflow version</span><strong>4da234b7c3f6</strong></div>
+<div class="meta-item"><span class="meta-label">Matched articles</span><strong>0</strong></div>
+<div class="meta-item"><span class="meta-label">Missing abstracts</span><strong>0</strong></div></div>
+</section>
+<section class="section" id="at-a-glance"><h2>At a Glance</h2>
+<table class="summary-table"><tr><th>Keyword</th><th>Matched articles</th><th>Articles with abstracts</th><th>Missing abstracts</th></tr>
+<tr><td>Toyokeizai</td><td>0</td><td>0</td><td>0</td></tr></table>
+<p class="note">Publication metadata often has date-level rather than hour-level precision. This report uses the requested local timezone window and public metadata API date filters.</p>
+<p class="note">Full-text boundary: this report provides DOI and publisher links only. Readers must manually use their own authorized university account for full-text access. The monitor does not log in, bypass access controls, or download PDFs.</p>
+<section class="section" id="articles-with-abstracts"><h2>Articles With Abstracts</h2>
+<section class="section" id="missing-abstract"><h2>Missing Abstract</h2>
+<p class="empty-note">No matched articles with missing abstracts.</p>
+  </main>
+
+<script>
+(() => {
+  const escapeHtml = (value) => String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+  const formatTopWork = (work) => {
+    if (!work || !work.title) return "No top-cited candidate metadata available.";
+    const parts = [];
+    if (work.journal) parts.push(escapeHtml(work.journal));
+    if (work.publication_date) parts.push(escapeHtml(work.publication_date));
+    parts.push(`${Number(work.cited_by_count || 0)} citations`);
+    const link = work.doi_url || work.openalex_url;
+    const title = link
+      ? `<a href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(work.title)}</a>`
+      : escapeHtml(work.title);
+    return `${title}<br><span class="trend-tooltip-meta">${parts.join(" · ")}</span>`;
+  };
+
+  document.querySelectorAll(".combined-trend").forEach((chart) => {
+    const dataNode = chart.querySelector(".trend-data");
+    const tooltip = chart.querySelector(".trend-tooltip");
+    if (!dataNode || !tooltip) return;
+    let data;
+    try {
+      data = JSON.parse(dataNode.textContent || "{}");
+    } catch {
+      return;
+    }
+
+    const showMode = (mode) => {
+      chart.querySelectorAll(".combined-svg").forEach((svg) => {
+        if (svg.dataset.mode === mode) {
+          svg.removeAttribute("hidden");
+        } else {
+          svg.setAttribute("hidden", "");
+        }
+      });
+      chart.querySelectorAll(".chart-mode-button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.chartMode === mode);
+      });
+    };
+
+    chart.querySelectorAll(".chart-mode-button").forEach((button) => {
+      button.addEventListener("click", () => showMode(button.dataset.chartMode || "indexed"));
+    });
+
+    const showTooltip = (event, year, svg) => {
+      const yearIndex = data.years.indexOf(Number(year));
+      if (yearIndex < 0) return;
+      const rows = data.series.map((series) => {
+        const top = (series.top_by_year || {})[String(year)] || {};
+        const count = Number((series.counts || [])[yearIndex] || 0);
+        return `<div class="trend-tooltip-row">
+          <span class="trend-tooltip-keyword" style="color:${escapeHtml(series.color)}">${escapeHtml(series.concept)}</span>:
+          <strong>${count}</strong> candidate appearances
+          <div>${formatTopWork(top)}</div>
+        </div>`;
+      }).join("");
+      tooltip.innerHTML = `<div class="trend-tooltip-title">${escapeHtml(year)}</div>${rows}`;
+      tooltip.style.display = "block";
+      const chartRect = chart.getBoundingClientRect();
+      const tooltipWidth = Math.min(460, chartRect.width - 40);
+      const left = Math.min(
+        Math.max(event.clientX - chartRect.left + 14, 12),
+        chartRect.width - tooltipWidth - 12
+      );
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${Math.max(event.clientY - chartRect.top - 12, 70)}px`;
+      const line = svg.querySelector(".trend-hover-line");
+      const zone = event.currentTarget;
+      if (line && zone) {
+        const x = Number(zone.getAttribute("x")) + Number(zone.getAttribute("width")) / 2;
+        line.setAttribute("x1", x);
+        line.setAttribute("x2", x);
+        line.style.display = "block";
+      }
+    };
+
+    chart.querySelectorAll(".trend-hover-zone").forEach((zone) => {
+      zone.addEventListener("mousemove", (event) => {
+        const svg = zone.closest("svg");
+        showTooltip(event, zone.dataset.year, svg);
+      });
+      zone.addEventListener("mouseenter", (event) => {
+        const svg = zone.closest("svg");
+        showTooltip(event, zone.dataset.year, svg);
+      });
+    });
+
+    chart.addEventListener("mouseleave", () => {
+      tooltip.style.display = "none";
+      chart.querySelectorAll(".trend-hover-line").forEach((line) => {
+        line.style.display = "none";
+      });
+    });
+
+    showMode("indexed");
+  });
+})();
+</script>
+
+</body>
+</html>
